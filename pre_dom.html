@@ -1,0 +1,25 @@
+<!-- Objective: In this task, you will create a dynamic form using HTML, JavaScript, 
+and the Document Object Model (DOM).
+The form will include an input tag and a button. After clicking the button, 
+an alert will be displayed, and the entered data will be shown on the webpage. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Capturing and Displaying Form Data using DOM Manipulation</title>
+</head>
+<body>
+    <input type="text" id="myInput"/>
+    <button id="myButton" onclick="Input()">Submit</button>
+    <h2 id="output"></h2>
+</body>
+<script>
+let inp = document.getElementById("myInput")
+let sub = document.getElementById("myButton")
+let out = document.getElementById("output")
+    function Input(){
+        alert(inp.value)
+        out.innerText = "Entered Value : " + inp.value
+    }
+</script>
+</html>
