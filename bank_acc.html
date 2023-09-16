@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Account</title>
+</head>
+
+<body>
+    <script>
+        function BankAccount(accountNumber, name, type, balance) {
+            let obj = {}
+            obj.accountNumber = accountNumber
+            obj.name = name
+            obj.type = type
+            obj.balance = balance
+            obj.deposite = function (amount) {
+                obj.balance += amount
+                console.log("Deposits the specified amount", obj.balance, "into the account.", obj.accountNumber)
+            }
+            obj.withdraw = function (amount) {
+                if (amount < obj.balance) {
+                    obj.balance = obj.balance - amount
+                    console.log("Withdraws the specified amount", amount, "from the account", obj.accountNumber, "if the balance is sufficient.")
+                }
+                else {
+                    console.log("INSUFFICIENT BALANCE")
+                }
+            }
+            obj.checkBabance = function () {
+                console.log("balance of account no.:", obj.accountNumber, "is", obj.balance)
+            }
+            obj.isActive = function () {
+                if (obj.balance >= 500) {
+                    console.log("YES Account is Active")
+                }
+                else {
+                    console.log("NO, Account is INACTIVE")
+                }
+            }
+            return obj
+            console.log()
+        }
+        let Ramacc = BankAccount("123456", "Ram", "Saving", 90000)
+        let Shyamacc = BankAccount("123455", "Shyam", "Current", 10000)
+        let Radhaacc = BankAccount("123457", "Radha", "Saving", 500)
+        let SONUacc = BankAccount("123458", "SONU", "fixed", 400)
+        let bhartiacc = BankAccount("123459", "bharti", "Current", 0)
+        let BOBacc = BankAccount("123460", "BOB", "Saving", 300)
+        let TINAacc = BankAccount("123461", "TINA", "Saving", 5000)
+        console.log(Ramacc)
+        console.log(Shyamacc)
+        console.log(Radhaacc)
+        console.log(SONUacc)
+        console.log(bhartiacc)
+        console.log(BOBacc)
+        console.log(TINAacc)
+        
+        BOBacc.isActive()
+        Shyamacc.isActive()
+        SONUacc.checkBabance()
+        Ramacc.deposite(1200)
+        bhartiacc.withdraw(400)
+    </script>
+</body>
+
+</html>
