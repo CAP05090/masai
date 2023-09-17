@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+    <style>
+        #cont{
+            border:1px solid black;
+            border-radius: 10px;
+            width:80%;
+            margin:auto;
+        }
+        #cont>div{
+            border:1px solid black;
+        }
+        #top{
+            padding:10px;
+            border-radius: 10px 10px 0px 0px; 
+        }
+        #time{
+            padding: 5px 20px;
+        }
+        #buttons{
+            padding:10px;
+            border-radius:0px 0px 10px 10px; 
+        }
+        .dig{
+            font-size: 75px;
+        }
+        .text{
+            font-size: 20px;
+        }
+        img{
+            width:30px;
+            height: 30px;
+            margin:5px;
+        }
+        #buttons>button{
+            padding:10px 15px;
+            margin:0px 20px;
+            border-radius: 4px 10px;
+            font-size: 20px;
+        }
+        #start{
+            background-color: rgb(39, 171, 171);
+        }
+        #pause{
+            background-color: hsl(240, 82%, 68%);
+        }
+        #reset{
+            background-color: rgb(227, 80, 80);
+        }
+    </style>
+</head>
+<body>
+    <div id="cont">
+        <div id="top">
+            <span><img src="data:image/png;base64,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" alt="stopWatch"/></span>
+            <span style="font-size: 20px; color: red;">STOPWATCH</span>
+        </div>
+        <div id="time">
+            <span class="dig" id="hr">00</span>
+            <span class="text">H</span>
+            <span class="dig" id="min">00</span>
+            <span class="text">M</span>
+            <span class="dig" id="sec">00</span>
+            <span class="text">S</span>
+            <span class="dig" id="count" style="font-size: 50px;">0</span>
+        </div>
+        <div id="buttons">
+            <button id="start">Start</button>
+            <button id="pause">Pause</button>
+            <button id="reset">reset</button>
+        </div>
+    </div>
+</body>
+<script>
+    let start = document.getElementById("start")
+    let pause = document.getElementById("pause")
+    let reset = document.getElementById("reset")
+
+    let hr = "00";
+    let min = "00";
+    let sec = "00";
+    let count = "00";
+
+    start.addEventListener("click", function(){
+        timer = true;
+        StopWatch()
+    })
+    pause.addEventListener("click", function(){
+        timer = false;
+    })
+    reset.addEventListener("click", function(){
+        timer = false;
+        hr = "00"
+        min = "00"
+        sec = "00"
+        count = "00"
+        document.getElementById("hr").innerText = "00"
+        document.getElementById("min").innerText = "00"
+        document.getElementById("sec").innerText = "00"
+        document.getElementById("count").innerText = "00"
+    })
+    function StopWatch(){
+        if (timer){
+            count++;
+            if (count==100){
+                sec++;
+                count = 0
+            }
+            if(sec==60){
+                min++
+                sec = 0
+                
+            }
+            if (min==60){
+                hr++
+                min = 0
+                sec = 0
+            }
+            let hrs = hr
+            let mins = min
+            let secs = sec;
+            let counts = count;
+            if (secs>0){
+                document.getElementById("sec").innerText = secs
+                document.getElementById("count").innerText = counts
+            }
+            else if(min>0){
+                document.getElementById("min").innerText = mins
+                document.getElementById("sec").innerText = secs
+                document.getElementById("count").innerText = counts
+            }
+            else if(hr>0){
+                document.getElementById("hr").innerText = hrs
+                document.getElementById("min").innerText = mins
+                document.getElementById("sec").innerText = secs
+                document.getElementById("count").innerText = counts
+            }
+            
+            
+            setTimeout(StopWatch, 10)
+        }
+    }
+</script>
+</html>
