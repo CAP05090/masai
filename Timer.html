@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+</head>
+<body>
+    <input type="text" id="minutes" placeholder="Enter time in minutes">
+    <h2 id="time">0:00</h2>
+    <button onclick="startCounter()">Start</button>
+    <button onclick="pauseCounter()">Pause</button>
+    <button onclick="resetCounter()">Reset</button>
+</body>
+<script>
+var mySeconds;
+var intervalHandle;
+
+function timer(){
+	var timeDisplay=document.getElementById("time");
+	var min=Math.floor(mySeconds/60);
+	var sec=mySeconds-(min*60);
+	if (sec < 10) {
+		sec="0"+sec;
+	}
+	var message=min.toString()+":"+sec;
+	timeDisplay.innerHTML=message;
+	
+	if(mySeconds==0){
+		// alert("Done");
+		clearInterval(intervalHandle);
+	}
+	mySeconds--;	
+}
+function startCounter(){
+	var myInput=document.getElementById("minutes").value;
+	if (isNaN(myInput)){
+		alert("Type a valid number please");
+		return;
+	}
+	mySeconds=myInput*60;
+	intervalHandle=setInterval(timer, 1000);
+}
+function pauseCounter(){
+        mySeconds = false;
+    }
+function resetCounter() {
+        mySeconds = false;
+        min = "00"
+        mySeconds = "00"
+        document.getElementById("time").innerText = "0:00"
+        }
+</script>
+</html>
