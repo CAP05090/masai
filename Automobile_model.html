@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUTOMOBILE INHERITANCE MODEL</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function automobileGen1(brand, model, manufactureyear, startType, engine){
+        this.Brand = brand
+        this.model = model
+        this.manufactureryear = manufactureyear
+        this.startType = startType
+        this.engine = engine
+    }
+    automobileGen1.prototype.EngineSpec = function(){
+        console.log("Engine power : 50 hp")
+        console.log("Engine Torque : 110 Nm")
+    }
+    automobileGen1.prototype.capacity = function(){
+        console.log("Sitting capacity 7 People")
+    }
+    // second series 
+    function automobileGen2(brand, model, manufactureyear, startType, engine, stearingType, bluetooth, camara){
+        automobileGen1.call(this, brand, model, manufactureyear, startType, engine)
+        // stearingType : power, normap
+        this.stearingType = stearingType
+        this.bluetooth = bluetooth
+        this.camara = camara // 
+    }
+    Object.setPrototypeOf(automobileGen2.prototype, automobileGen1.prototype)
+
+    automobileGen2.prototype.camarafunc = function(){
+        console.log("back view is visible when backword move")
+    }
+    automobileGen2.prototype.connectbluetooth = function(){
+        console.log("Bluetooth Connected")
+    }
+    automobileGen2.prototype.disconnectbluetooth = function(){
+        console.log("Bluetooth Disconnected")
+    }
+
+    let automobileGen1f = new automobileGen1("Volvo", 'Vol-V1', 2021, "self", "4 Stroke",)
+    console.log(automobileGen1f)
+    console.log(automobileGen1.__proto__)
+    console.log(automobileGen1.__proto__.__proto__)
+    automobileGen1f.capacity()
+    automobileGen1f.EngineSpec()
+
+    let automobileGen2f = new automobileGen2("Volvo", 'Vol-V1', 2021, "key press", "4 Stroke", "power stering", "v 4.1", "10mp") 
+    console.log(automobileGen2f)
+    automobileGen2f.camarafunc()
+    automobileGen2f.capacity()
+
+
+</script>
+</html>
