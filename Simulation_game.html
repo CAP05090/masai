@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+    // Basic Vehicle model constructor function
+    function basicVehicle(brand, model, speed, fueltype){
+        this.brand = brand
+        this.model = model
+        this.speed = speed
+        this.fueltype = fueltype
+    }
+    basicVehicle.prototype.accelerate = function(){
+        console.log("accelerate() should increase the speed of the vehicle.")
+    }
+    basicVehicle.prototype.brake = function(){
+        console.log("brake() should decrease the speed.")
+    }
+    basicVehicle.prototype.refuel = function(){
+        console.log("refuel() should log a message indicating the vehicle is refueling.")
+    }
+
+    // car model Constructor function
+    function car(brand, model, speed, fueltype, numberOfWheels){
+        basicVehicle.call(this, brand, model, speed, fueltype)
+        this.numberOfWheels = numberOfWheels
+    }
+    Object.setPrototypeOf(car.prototype, basicVehicle.prototype)
+    car.prototype.honk = function(){
+        console.log("honking sound")
+    }
+
+    // Aeroplane model Constructor function
+    function Airplane(brand, model, speed, fueltype, numberOfEngines, hasLandingGear){
+        basicVehicle.call(this, brand, model, speed, fueltype)
+        this.numberOfEngines = numberOfEngines
+        this.hasLandingGear = hasLandingGear
+    }
+    Object.setPrototypeOf(Airplane.prototype, basicVehicle.prototype)
+    Airplane.prototype.takeOff = function(){
+        console.log("The airplane is taking off")
+    }
+
+    // Show how you would create a new instance of Car and Airplane, and demonstrate invoking their methods, ensuring that both types of vehicles can still accelerate, brake, and refuel through their prototype chain.
+
+    let car1 = new car("mahindra", "thor", "140km/h", "Diesel", 5)
+    console.log(car1)
+    car1.accelerate()
+    car1.brake()
+    car1.refuel()
+
+    let airplane1 = new Airplane("Air india", "Air 21", "400 km/h", "Petrol", 2, "Yes")
+    console.log(airplane1)
+    airplane1.accelerate()
+    airplane1.brake()
+    airplane1.refuel()
+</script>
+</html>
