@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        #cont{
+            width: 95%;
+            margin:auto;
+            display:grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+      .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border: 1px solid black;
+        border-radius: 10px 5px;
+        padding: 10px;
+        margin: 10px;
+      }
+      .card>p{
+        margin:5px;
+      }
+      img{
+        font-display: block;
+        margin:auto;
+        width: 250px;
+        height: 230px;
+        border-radius: 10px 5px 0px 0px;
+      }
+    </style>
+    <title>OMDB API</title>
+  </head>
+  <body>
+    <h1>OMDB MOVIES</h1>
+    <input type="text" id="search" placeholder="Enter movie name" />
+    <button onclick="getData()">Search</button>
+    <div id="cont"></div>
+    <script src="index.js"></script>
+  </body>
+</html>
