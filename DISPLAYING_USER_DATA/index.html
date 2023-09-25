@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DISPLAYING USER DATA</title>
+    <style>
+        #cont {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin:5% 5% 0% 5%;
+        grid-gap: 20px;
+      }
+
+      #container > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #cecece;
+      }
+
+      img {
+        width: 90%;
+        height: 225px;
+      }
+      button{
+        height: 40px;
+        width:120px;
+        font-size: 17px;
+        background-color: rgb(90, 219, 219);
+        border-radius: 10px 5px;
+      }
+    </style>
+</head>
+<body>
+    <button id="fetch">Fetch Users</button>
+    <div id="cont"></div>
+</body>
+<script src="index.js"></script>
+</html>
