@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOCAL STORAGE EXERCISE</title>
+    <style>
+        div {
+        display: flex;
+        justify-content: space-around;
+        }
+        form {
+        margin: 0 auto;
+        margin-top: 50px;
+        width: 30%;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        padding: 30px;
+        }
+        
+        label {
+            font-size: 20px;
+            margin:5px;
+        }
+        table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 60%;
+        margin: auto;
+        margin-top: 50px;
+        text-align: center;
+        }
+        
+        table td,
+        table th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #8caacf;
+        }
+        
+        table tr:hover {
+            background-color: #ddd;
+        }
+        
+        table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #0468aa;
+            color: white;
+            text-align: center;
+        }
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <h1></h1>
+    <div>
+        <form>
+            <label for="name">Name</label>
+            <input id="name" type="text" placeholder="Enter Your Name">
+            <label for="age">Age</label>
+            <input id="age" type="text" placeholder="Enter Your Age">
+            <button id="submit">Submit</button>
+            <h1></h1>
+            <button id="retrieve">Retrieve Data</button>
+        </form>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- ******* Append your output here ********* -->
+            </tbody>
+        </table>
+    </div>
+</body>
+<script src="index.js"></script>
+</html>
