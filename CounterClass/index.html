@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+    <style>
+        body>div{
+            width:90%;
+            border:1.5px solid black;
+            margin: 50px auto;
+        }
+        #cont{
+            display: flex;
+            justify-content: space-around;
+            margin:20px;
+        }
+        .dig{
+            font-size: 50px;
+        }
+        .text{
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #start{
+            background-color: rgb(146, 231, 231);
+            font-weight: bold;
+            border-radius: 5px;
+            padding: 3px 7px;
+            font-size: 25px;
+        }
+        #incdec{
+            display:flex;
+            justify-content: space-around;
+            margin:10px;
+        }
+        #incdec>button{
+            padding: 3px 7px;
+            background-color: antiquewhite;
+            font-weight: bold;
+            border-radius: 5px;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="cont">
+            <div>
+                <span class="dig" id="min">0</span>
+                <span class="text">m</span>
+                <span class="dig" id="sec">0</span>
+                <span class="text">s</span>
+            </div>
+            <div>
+                <button id="start">Start</button>
+            </div>
+        </div>
+        <hr>
+        <div id="incdec">
+            <button id="inc">increment</button>
+            <button id="dec">Decrement</button>
+        </div>
+            
+    </div>
+    
+</body>
+<script src="index.js"></script>
+</html>
