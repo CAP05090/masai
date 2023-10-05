@@ -1,0 +1,34 @@
+#root{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:20px;
+    margin:20px;
+    padding:20px;
+}
+#root>div{
+    border:1px solid black;
+    padding: 20px 20px 5px 20px;
+}
+img{
+    width:200px;
+    height: 200px;
+}
+h3{
+    margin:5px 5px 5px 0px;
+}
+p{
+    margin:5px 5px 5px 0px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.serchbox{
+    padding: 5px;
+    background-color: rgb(172, 219, 79);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.serchbox>a{
+    margin:5px;
+    color: darkblue;
+}
