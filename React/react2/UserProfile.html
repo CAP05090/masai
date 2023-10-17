@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USERPROFILE</title>
+    <style>
+        body{
+            padding-top: 50px;
+        }
+        .cont{
+            display: flex;
+            justify-content: space-between;
+            width: 65%;
+            margin: auto;
+            border: 0px solid darkgrey;
+            padding: 15px;
+        }
+        .cont>div{
+            margin: 5px;
+            padding: 10px;
+            border:0px solid red;
+        }
+        .cont>div>h2,h4{
+            padding-left: 10px;
+        }
+        .cont>div>div{
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            
+        }
+        .skill{
+            border: 1px solid rgb(174, 174, 237);
+            text-align: center;
+            margin: 10px;
+            padding: 5px;
+            border-radius: 10px;
+            background-color: rgb(239, 244, 242);
+        }
+        img{
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+        }
+        /* For Small Screen */
+        @media all and (min-width: 320px) and (max-width:700px){
+            .cont{
+                width:95%;
+            }
+            .cont>div>div{
+                display: grid;
+                grid-template-columns: repeat(3, 1fr); 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://www.unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        
+        let rootElement = document.getElementById("root")
+
+        function UserProfile(props) {
+                // alert("You clicked Masai!")
+                return (
+                    <div className="cont">
+                        <div>
+                            <h2> {props.name}</h2>
+                            <h4> {props.title}</h4>
+                            <div>{props.skills.map((skill) => 
+                                        <p class="skill">{skill}</p>
+                                )}
+                            </div>
+                        </div>
+                        <div>
+                            <img src={props.avatar_url}/>
+                        </div>
+                    </div>
+                )
+            }
+        function UserInput() {
+            return (
+                <UserProfile 
+                name={"Albert Sebastin"}
+                title={"Software Engineer"}
+                avatar_url={"data:image/jpeg;base64,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"}
+                skills={["ReactJS", "NodeJS", "JavaScript", "Python", "SQL", "React Hooks", "React Native"]}
+                />
+            );
+        }
+        const reactRoot = ReactDOM.createRoot(rootElement)
+
+        reactRoot.render(<UserInput />)
+
+    </script>
+</body>
+</html>
