@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add/Edit/Delete_Todo</title>
+    <style>
+        h1{
+            background-color: rgb(111, 111, 250);
+            text-align: center;
+            color: white;
+        }
+        form{
+            background-color: rgb(235, 239, 243);
+            border: 1px solid grey;
+            width: 60%;
+            margin: auto auto 40px;
+        }
+        h2{
+            text-align: center;
+            color: rgb(254, 79, 79);
+            margin-top: 0px;
+        }
+        form>div{
+            display: grid;
+            justify-content: center;
+        }
+        form>div>input{
+            width:250px;
+            font-size: large;
+        }
+        button{
+            width:75px;
+            margin:25px auto 0px;
+            font-size: 20px;
+            text-align: center;
+        }
+        .list{
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            border:1px solid grey;
+            margin: auto;
+        }
+        .list>div{
+            margin:auto 5px auto;
+        }
+        .list>div>p{
+            font-size: 20px;
+            margin: 10px 10px;
+        }
+        .list>div>p>img{
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://www.unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">  
+    function App() {
+        const [items, setItems] = React.useState(() => {
+            const savedItems = localStorage.getItem("Items");
+            if (savedItems) {
+            return JSON.parse(savedItems);
+            } else {
+            return [];
+            }
+        });
+        const [todo, setTodo] = React.useState("");
+        const [editing, setEditing] = React.useState(false);
+        const [currentItem, setCurrentItem] = React.useState({});
+        React.useEffect(() => {
+            localStorage.setItem("Items", JSON.stringify(items));
+        }, [items]);
+        function handleInputChange(e) {
+            setTodo(e.target.value);
+        }
+        function handleEdit(e) {
+            setCurrentItem({ ...currentItem, text: e.target.value });
+            console.log(currentItem);
+        }
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            if (todo !== "") {
+                setItems([ ...items, { id: items.length + 1, text: todo.trim() } ]);
+            }
+            setTodo("");
+        }
+        function handleEditFormSubmit(e) {
+            e.preventDefault();
+            handleUpdateTodo(currentItem.id, currentItem);
+        }
+        function handleDelete(id) {
+            const removeItem = items.filter((todo) => {
+            return todo.id !== id;
+            });
+            setItems(removeItem);
+        }
+        function handleUpdateTodo(id, updatedTodo) {
+            const updatedItem = items.map((todo) => {
+            return todo.id === id ? updatedTodo : todo;
+            });
+            setEditing(false);
+            setItems(updatedItem);
+        }
+        function handleEditClick(todo) {
+            setEditing(true);
+            setCurrentItem({ ...todo });
+        }
+        return (
+            <div className="App">
+                <h1>Todo App</h1>
+            {editing ? (
+                <form onSubmit={handleEditFormSubmit}>
+                <h2>Edit Todo</h2>
+                <div>
+                    <input name="editTodo" type="text" placeholder="Edit todo"
+                        value={currentItem.text} onChange={handleEdit} />
+                </div>
+                <div style={{display:"flex"}}>
+                    <button type="submit">Update</button>
+                    <button onClick={() => setEditing(false)}>Cancel</button>
+                </div>
+                </form>
+            ) : 
+            (
+                <form onSubmit={handleFormSubmit}>
+                <h2>Add Todo</h2>
+                <div>
+                    <input name="todo" type="text" placeholder="Create a new todo"
+                        value={todo} onChange={handleInputChange} />
+                    <button type="submit">Add</button>
+                </div>
+                </form>
+            )}
+            {<div className="todo-list">
+                {items.map((todo) => (
+                <div key={todo.id} className="list">
+                    <div style={{display:"flex", marginLeft:"10px"}}>
+                        <p>{todo.text ? 
+                            <img src="data:image/png;base64,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"/> :
+                            <img src="data:image/png;base64,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"/>
+                        }</p>
+                        <p>{todo.text}</p>
+                    </div>
+                    
+                    <div>
+                        <button style={{backgroundColor:"blue", color:"white", margin:"auto" }} onClick={() => handleEditClick(todo)}>Edit</button>
+                        <button style={{backgroundColor:"red", color:"white", margin:"0px 5px"}} onClick={() => handleDelete(todo.id)}>Delete</button>
+                    </div>
+                    </div>
+                ))}
+            </div>}
+            </div>
+        );
+    }
+    const reactRoot = ReactDOM.createRoot(document.getElementById("root")).render(<App />)
+    
+    </script>
+</body>
+</html>
